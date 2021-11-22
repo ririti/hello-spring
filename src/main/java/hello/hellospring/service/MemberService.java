@@ -2,11 +2,13 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
     //test 케이스 자동 단축키 shit + command + t
     private  final MemberRepository memberRepository;
@@ -32,11 +34,11 @@ public class MemberService {
                     throw  new IllegalStateException("이미 존재하는 회원입니다.");
                 });//커맨드 옵션 v하면 옵셔널을 달아준다
     }
-    /*
+    /**
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
-        return memberRepository.findAll();
+            return memberRepository.findAll();
     }
 
     public  Optional<Member> findOne(Long memberId){
